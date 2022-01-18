@@ -1,0 +1,27 @@
+When answering questions about code, make sure your answer succinctly describes the in English or as a high-level mathematical expression. Answers that merely transcribe the code into English (e.g., "next, it adds register rax to register rdi") will receive no credit.
+
+Your answers go below each question.
+
+
+Q1: There are four call instructions in the first sixty bytes following the label _start. Each checks something about the input argument. What does each of them check, in the order they appear in the program?
+
+
+
+
+
+Q2: The code is broken into several smaller functions. (For this task, we will define functions as targets of call instructions.) Reverse-engineer those functions.  For each function show below (a) the address, (b) what the function expects as the argument(s) and in which register(s), and (c) what the function computes.
+
+
+
+
+
+
+Q3. Provide an example input that results in the hackme code assigned to you displaying "YOU WIN!"
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+Your answers go below each question.
+
+
+Q1: print saves rdi on the stack before calling len and restores it after len returns. How is rdi used in len, and why does print save it to the stack?
+
+
+
+
+
+Q2: The calling convention defines rbx, rbp, and r12-r15 as callee-saved registers, but print doesn't save any of them. Does this violate the calling convention? If so, how? If not, why not?
+
+
+
+
+
+Q3: _start uses rbx to track the argument count. Suppose we used rax instead. Would that work under the calling convention rules? If yes, explain why. If not, what would we need to change in _start to make this work (without modifying print or len)?
+
+
+
+
+
+Q4: List the five top entries on the stack at the point when the cmp instruction inside len is executed for the first time. For each entry, list the byte offset relative to rsp, what the value there represents, and the address of the instruction that wrote this value to the stack.
+
+
+
+
+
+Q5: xor rdi, rdi has an equivalent mov instruction. Why do you think xor rdi, rdi might be preferable?
+
+
+
+
+
+
