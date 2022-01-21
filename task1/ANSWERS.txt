@@ -3,17 +3,21 @@ Your answers go below each question.
 
 Q1: print saves rdi on the stack before calling len and restores it after len returns. How is rdi used in len, and why does print save it to the stack?
 
+Rdi is used to store the first argument for len, which is the address/pointer of the input string where the length of the string is to be calculated. Print saves it to the stack because by convention, rdi is not callee saved, which means its value could change after print calls len. By pushing it on the stack, print can retrieve the value from the stack even if rid gets altered
 
 
 
 
 Q2: The calling convention defines rbx, rbp, and r12-r15 as callee-saved registers, but print doesn't save any of them. Does this violate the calling convention? If so, how? If not, why not?
 
-
+Arguably no, since print does not alter these registers, so their value is preserved anyways.
+In addition, even if print calls len, which alters rbp, rbp is saved by len. We can also assume that any functions called by print should probably follow the calling convention and preserve its value. 
 
 
 
 Q3: _start uses rbx to track the argument count. Suppose we used rax instead. Would that work under the calling convention rules? If yes, explain why. If not, what would we need to change in _start to make this work (without modifying print or len)?
+
+Under the calling convention rules, it would not work. Rbx is callee saved but rax is not, and since it is the return value, it is highly likely it will change. If one wanted to use rax to track argument count, _start should push rax to the stack before calling any function such as print or len.
 
 
 
@@ -21,14 +25,28 @@ Q3: _start uses rbx to track the argument count. Suppose we used rax instead. Wo
 
 Q4: List the five top entries on the stack at the point when the cmp instruction inside len is executed for the first time. For each entry, list the byte offset relative to rsp, what the value there represents, and the address of the instruction that wrote this value to the stack.
 
+Offset:
 
+0x0: Written by address: 0x0000000000401004 (sub rsp 0x8). This is a the 64 bit variable stored on the stack for len to keep track of how many non zero bytes it has seen. 
+
+0x8: Written by address: 0x0000000000401000 (push rbp). This represents the base pointer of the previous stack frame, which we will recover after finishing executing this function (len) and return to "print"'s stack frame as rbp will be altered because this is callee save.
+
+401030
+0x10: Written by address: 0x000000000040102b (call len). This represents the return address after len finishes executing, which is pop rdi, L32
+
+40107f
+0x18: Written by address: 0x000000000040102a (push rdi). This represents the first argument given to print, an address to a string to be printed, which is "hello", which is saved by print before
+calling len since it is not callee save. 
+
+40105e
+0x20: Written by address: 0x0000000000401059 (call print). This represents the address of the next instruction after "print" returns control (return address) (pop rdi, L49)
 
 
 
 Q5: xor rdi, rdi has an equivalent mov instruction. Why do you think xor rdi, rdi might be preferable?
 
 
-
+Because it saves memory, since you don't have to store the value "0" anywhere as a 32 bit, 4 byte  number or something
 
 
 
