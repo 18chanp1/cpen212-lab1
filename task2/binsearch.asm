@@ -7,7 +7,7 @@ binsearch:
 ;Termination condition;
 mov r10, rdi
 add r10, 8
-cmp rsi, r10
+cmp rsi, rdi
 jb notfound
 mov r10, rsi
 sub r10, rdi
