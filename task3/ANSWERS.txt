@@ -5,19 +5,53 @@ Your answers go below each question.
 
 Q1: There are four call instructions in the first sixty bytes following the label _start. Each checks something about the input argument. What does each of them check, in the order they appear in the program?
 
+1. Checks that the input argument is below 15 characters/bytes
+2. Computes a very complicated hashsum or checksum for this argument and checks that it is the same as the target (0x71)
+3. Checks that the argument is "symmetrical" and "opposite cased" e.g. "ITti" is symmetrical because from the left it starts with I and from the right it also starts with i but lowercase, and the middle is T. Also, the capitals have to start first, so "PEEeep" works but "peeEEP" does not work. 
+4. This function checks that the amount of letters in the argument matches the amount of letters in the target. (e.g. 4 'D's, 3 'E's 5 'N' s etc.) Counts only the "capitals" part of your argument.
+
+For example, TURDdrut has 1 T, 1 U, 1 R and 1 D. Lowercase does not count. 
 
 
 
 
 Q2: The code is broken into several smaller functions. (For this task, we will define functions as targets of call instructions.) Reverse-engineer those functions.  For each function show below (a) the address, (b) what the function expects as the argument(s) and in which register(s), and (c) what the function computes.
 
+I give the functions some names for easy reference.
+difference()
+a. 0x401000
+b. rdi - contains address of the argument string
+c. computes whether function is "symmetrical and opposite cased", see (3) in Q1. Returns 1 if true, 0 is false. 
 
+below15()
+a. 0x4010fc
+b. rdi - contains address of argument string
+c. computes whether function is under 15 bytes/chars. Returns 1 if below 15 bytes, 0 if above.
 
+countLength()
+a. 0x40118a
+b. rdi - contains address of argument string
+c. computes the length of the string. Returns that unsigned value. 
 
+compareLetters()
+a. 0x40119c
+b. rdi - contains address to memory containing letter quantity data of the target
+   rsi - contains the address to memory on the stack containing letter quantity data of the input 			 argument string
+c. rdx - only edx used here. Contains the number of "elements" that the memory space at rdi and rsi are divided into. In this case, 26 partitions of 8 bytes for each letter of the alphabet. 
 
+checkLetterQty()
+a. 0x4011bc
+b. rdi - contains address of argument string.
+c. computes whether the number of letters matches the target string. See Q1 (4) above Returns 1 if a match, otherwise returns 0.
+
+hash()
+a. 0x401206
+b. rdi - contains address of argument string
+c. computes whether input argument's hash is equal to 0x71. If so, returns 1. If not, returns 0. 
 
 Q3. Provide an example input that results in the hackme code assigned to you displaying "YOU WIN!"
 
+DENNISsinned
 
 
 
