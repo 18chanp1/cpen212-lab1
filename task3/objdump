@@ -1,0 +1,261 @@
+0000000000401000 <_start-0x10d>:
+difference()
+Start from front and end of the argument and see, if the difference between the letters in terms of ascii is 224 letters apart. Keep looking until you find one. This is obviously never true because the largest extended ASCII character is FF, so it means the smallest possible character is a control character that I can’t type. 
+
+  401000:	57                   	push   rdi - saves argument - ptr to input
+  401001:	e8 85 01 00 00       	call   40118b <_start+0x7e> calls countLength()
+  401006:	5f                   	pop    rdi - ptr to input
+  401007:	48 01 f8             	add    rax,rdi - obtains the end address of last byte
+  40100a:	48 ff c8             	dec    rax skips the null
+  ->40100d:	48 39 c7             	cmp    rdi,rax - check if looking range is together. 
+  401010:	77 11                	ja     401023 <_start-0xea> -> return 1
+  401012:	8a 17                	mov    dl,BYTE PTR [rdi] 
+  401014:	2a 10                	sub    dl,BYTE PTR [rax] - find gap between letters
+  401016:	80 fa e0             	cmp    dl,0xe0
+  401019:	75 0e                	jne    401029 <_start-0xe4> - return 0 if dl (rdx) != to e0
+  40101b:	48 ff c7             	inc    rdi
+  40101e:	48 ff c8             	dec    rax
+  401021:	eb ea                	jmp    40100d <_start-0x100>
+  ->401023:	b8 01 00 00 00       	mov    eax,0x1 Return 1
+  401028:	c3                   	ret    
+  -> 401029:	31 c0                	xor    eax,eax Return 0
+  40102b:	c3                   	ret  
+
+  Some memory space. 
+a
+  40102c:	00 00                	add    BYTE PTR [rax],al
+  40102e:	00 00                	add    BYTE PTR [rax],al
+  401030:	00 00                	add    BYTE PTR [rax],al
+  401032:	00 00                	add    BYTE PTR [rax],al
+  
+  401034:	00 00                	add    BYTE PTR [rax],al
+  401036:	00 00                	add    BYTE PTR [rax],al
+  401038:	00 00                	add    BYTE PTR [rax],al
+  40103a:	00 00                	add    BYTE PTR [rax],al
+b
+  40103c:	00 00                	add    BYTE PTR [rax],al
+  40103e:	00 00                	add    BYTE PTR [rax],al
+  401040:	00 00                	add    BYTE PTR [rax],al
+  401042:	00 00                	add    BYTE PTR [rax],al
+  
+  401044:	01 00                	add    DWORD PTR [rax],eax
+  401046:	00 00                	add    BYTE PTR [rax],al
+  401048:	00 00                	add    BYTE PTR [rax],al
+  40104a:	00 00                	add    BYTE PTR [rax],al
+c
+  40104c:	01 00                	add    DWORD PTR [rax],eax
+  40104e:	00 00                	add    BYTE PTR [rax],al
+  401050:	00 00                	add    BYTE PTR [rax],al
+  401052:	00 00                	add    BYTE PTR [rax],al
+  
+  401054:	00 00                	add    BYTE PTR [rax],al
+  401056:	00 00                	add    BYTE PTR [rax],al
+  401058:	00 00                	add    BYTE PTR [rax],al
+  40105a:	00 00                	add    BYTE PTR [rax],al
+d
+  40105c:	00 00                	add    BYTE PTR [rax],al
+  40105e:	00 00                	add    BYTE PTR [rax],al
+  401060:	00 00                	add    BYTE PTR [rax],al
+  401062:	00 00                	add    BYTE PTR [rax],al
+  
+  401064:	00 00                	add    BYTE PTR [rax],al
+  401066:	00 00                	add    BYTE PTR [rax],al
+  401068:	00 00                	add    BYTE PTR [rax],al
+  40106a:	00 00                	add    BYTE PTR [rax],al
+ e 
+  40106c:	01 00                	add    DWORD PTR [rax],eax
+  40106e:	00 00                	add    BYTE PTR [rax],al
+  401070:	00 00                	add    BYTE PTR [rax],al
+  401072:	00 00                	add    BYTE PTR [rax],al
+  
+  401074:	00 00                	add    BYTE PTR [rax],al
+  401076:	00 00                	add    BYTE PTR [rax],al
+  401078:	00 00                	add    BYTE PTR [rax],al
+  40107a:	00 00                	add    BYTE PTR [rax],al
+f
+  40107c:	00 00                	add    BYTE PTR [rax],al
+  40107e:	00 00                	add    BYTE PTR [rax],al
+  401080:	00 00                	add    BYTE PTR [rax],al
+  401082:	00 00                	add    BYTE PTR [rax],al
+  
+  401084:	00 00                	add    BYTE PTR [rax],al
+  401086:	00 00                	add    BYTE PTR [rax],al
+  401088:	00 00                	add    BYTE PTR [rax],al
+  40108a:	00 00                	add    BYTE PTR [rax],al
+ g 
+  40108c:	00 00                	add    BYTE PTR [rax],al
+  40108e:	00 00                	add    BYTE PTR [rax],al
+  401090:	00 00                	add    BYTE PTR [rax],al
+  401092:	00 00                	add    BYTE PTR [rax],al
+  
+  401094:	02 00                	add    al,BYTE PTR [rax]
+  401096:	00 00                	add    BYTE PTR [rax],al
+  401098:	00 00                	add    BYTE PTR [rax],al
+  40109a:	00 00                	add    BYTE PTR [rax],al
+h
+  40109c:	00 00                	add    BYTE PTR [rax],al
+  40109e:	00 00                	add    BYTE PTR [rax],al
+  4010a0:	00 00                	add    BYTE PTR [rax],al
+  4010a2:	00 00                	add    BYTE PTR [rax],al
+  
+  4010a4:	00 00                	add    BYTE PTR [rax],al
+  4010a6:	00 00                	add    BYTE PTR [rax],al
+  4010a8:	00 00                	add    BYTE PTR [rax],al
+  4010aa:	00 00                	add    BYTE PTR [rax],al
+i
+  4010ac:	00 00                	add    BYTE PTR [rax],al
+  4010ae:	00 00                	add    BYTE PTR [rax],al
+  4010b0:	00 00                	add    BYTE PTR [rax],al
+  4010b2:	00 00                	add    BYTE PTR [rax],al
+  
+  4010b4:	00 00                	add    BYTE PTR [rax],al
+  4010b6:	00 00                	add    BYTE PTR [rax],al
+  4010b8:	00 00                	add    BYTE PTR [rax],al
+  4010ba:	00 00                	add    BYTE PTR [rax],al
+j
+  4010bc:	01 00                	add    DWORD PTR [rax],eax
+  4010be:	00 00                	add    BYTE PTR [rax],al
+  4010c0:	00 00                	add    BYTE PTR [rax],al
+  4010c2:	00 00                	add    BYTE PTR [rax],al
+  
+  4010c4:	00 00                	add    BYTE PTR [rax],al
+  4010c6:	00 00                	add    BYTE PTR [rax],al
+  4010c8:	00 00                	add    BYTE PTR [rax],al
+  4010ca:	00 00                	add    BYTE PTR [rax],al
+k
+  4010cc:	00 00                	add    BYTE PTR [rax],al
+  4010ce:	00 00                	add    BYTE PTR [rax],al
+  4010d0:	00 00                	add    BYTE PTR [rax],al
+  4010d2:	00 00                	add    BYTE PTR [rax],al
+  
+  4010d4:	00 00                	add    BYTE PTR [rax],al
+  4010d6:	00 00                	add    BYTE PTR [rax],al
+  4010d8:	00 00                	add    BYTE PTR [rax],al
+  4010da:	00 00                	add    BYTE PTR [rax],al
+  
+  4010dc:	00 00                	add    BYTE PTR [rax],al
+  4010de:	00 00                	add    BYTE PTR [rax],al
+  4010e0:	00 00                	add    BYTE PTR [rax],al
+  4010e2:	00 00                	add    BYTE PTR [rax],al
+  
+  4010e4:	00 00                	add    BYTE PTR [rax],al
+  4010e6:	00 00                	add    BYTE PTR [rax],al
+  4010e8:	00 00                	add    BYTE PTR [rax],al
+m
+  4010ea:	00 00                	add    BYTE PTR [rax],al
+  4010ec:	00 00                	add    BYTE PTR [rax],al
+  4010ee:	00 00                	add    BYTE PTR [rax],al
+  4010f0:	00 00                	add    BYTE PTR [rax],al
+  4010f2:	00 00                	add    BYTE PTR [rax],al
+  4010f4:	00 00                	add    BYTE PTR [rax],al
+  4010f6:	00 00                	add    BYTE PTR [rax],al
+  4010f8:	00 00                	add    BYTE PTR [rax],al
+m
+  4010fa:	00 00                	add    BYTE PTR [rax],al
+
+below15()
+  4010fc:	e8 8a 00 00 00       	call   40118b <_start+0x7e> - below15() // Calls countLength()
+  401101:	48 83 f8 0f          	cmp    rax,0xf Checks if function input is below 15 bytes
+  401105:	0f 92 c0             	setb   al		If so, set al (rax), to true 
+  401108:	48 0f b6 c0          	movzx  rax,al	Widens al to rax
+  40110c:	c3                   	ret    			
+
+000000000040110d <_start>:
+  40110d:	5b                   	pop    rbx - stores the number of args
+  40110e:	48 83 fb 02          	cmp    rbx,0x2
+  401112:	75 40                	jne    401154 <_start+0x47>
+  401114:	48 8b 7c 24 08       	mov    rdi,QWORD PTR [rsp+0x8]
+  401119:	e8 de ff ff ff       	call   4010fc <_start-0x11> - Calls below15(*pointer to args) returns 1 if below 15
+  40111e:	48 89 c3             	mov    rbx,rax
+  401121:	48 8b 7c 24 08       	mov    rdi,QWORD PTR [rsp+0x8]
+  401126:	e8 db 00 00 00       	call   401206 <_start+0xf9> - Calls hash($ptr to args)
+  40112b:	48 21 c3             	and    rbx,rax
+  40112e:	48 8b 7c 24 08       	mov    rdi,QWORD PTR [rsp+0x8]
+  401133:	e8 c8 fe ff ff       	call   401000 <_start-0x10d> - calls difference(*ptr to args)
+  401138:	48 21 c3             	and    rbx,rax
+  40113b:	48 8b 7c 24 08       	mov    rdi,QWORD PTR [rsp+0x8]
+  401140:	e8 77 00 00 00       	call   4011bc <_start+0xaf> - calls elm
+  401145:	48 21 c3             	and    rbx,rax - if zero, ZF set
+  401148:	48 be 79 11 40 00 00 00 00 00 	movabs rsi,0x401179 - YOU WIN
+  401152:	75 0a                	jne    40115e <_start+0x51> If not zero, skip boom
+  401154:	48 be 82 11 40 00 00 00 00 00 	movabs rsi,0x401182 - BOOM
+  ->40115e:	ba 09 00 00 00       	mov    edx,0x9
+  401163:	b8 01 00 00 00       	mov    eax,0x1
+  401168:	bf 01 00 00 00       	mov    edi,0x1
+  40116d:	0f 05                	syscall 
+  40116f:	b8 3c 00 00 00       	mov    eax,0x3c
+  401174:	48 31 ff             	xor    rdi,rdi
+  401177:	0f 05                	syscall 
+  401179:	59                   	pop    rcx
+  40117a:	4f 55                	rex.WRXB push r13
+  40117c:	20 57 49             	and    BYTE PTR [rdi+0x49],dl  //YOU WIN
+  40117f:	4e 21 0a             	rex.WRX and QWORD PTR [rdx],r9
+**Boom**
+  401182:	2a 2a                	sub    ch,BYTE PTR [rdx]
+  401184:	42                   	rex.X
+  401185:	4f                   	rex.WRXB
+  401186:	4f                   	rex.WRXB
+  401187:	4d 2a 2a             	rex.WRB sub r13b,BYTE PTR [r10]
+
+countLength()
+  40118a:	0a 48 89             	or     cl,BYTE PTR [rax-0x77]  countLength() - MOV RAX RDI 
+  40118d:	f8                   	clc    
+  40118e:	80 38 00             	cmp    BYTE PTR [rax],0x0 - exit loop if null
+  401191:	74 05                	je     401198 <_start+0x8b>
+  401193:	48 ff c0             	inc    rax
+  401196:	eb f6                	jmp    40118e <_start+0x81>
+  401198:	48 29 f8             	sub    rax,rdi
+  40119b:	c3                   	ret    
+
+Bridge()
+  40119c:	48 85 d2             	test   rdx,rdx
+  40119f:	74 12                	je     4011b3 <_start+0xa6> if length is 0, return 1.
+  4011a1:	48 ff ca             	dec    rdx	- start going through 26 letters
+  4011a4:	48 8b 04 d7          	mov    rax,QWORD PTR [rdi+rdx*8] load letter
+  4011a8:	48 3b 04 d6          	cmp    rax,QWORD PTR [rsi+rdx*8]
+  4011ac:	75 0b                	jne    4011b9 <_start+0xac> - check that the stack matches memory , if not return 0
+  4011ae:	48 85 d2             	test   rdx,rdx - if not zero, loop back
+  4011b1:	75 e9                	jne    40119c <_start+0x8f>
+  4011b3:	b8 01 00 00 00       	mov    eax,0x1
+  4011b8:	c3                   	ret    
+  ->4011b9:	31 c0                	xor    eax,eax
+  4011bb:	c3                   	ret    
+
+Elm():
+Takes the input, creates a space in memory,
+If the value at input is non zero, increment the byte(I presume input is some sort of bit address.)
+This thing counts letters each?
+ 
+  4011bc:	55                   	push   rbp
+  4011bd:	48 89 e5             	mov    rbp,rsp  Save stack pointer
+  4011c0:	48 81 ec 00 08 00 00 	sub    rsp,0x800 Advance stack by 0x800
+  4011c7:	57                   	push   rdi - Save input
+  4011c8:	31 c0                	xor    eax,eax - set eax (rax return to 0
+  4011ca:	66 b9 00 01          	mov    cx,0x100 - Set cx, rcx to 100 (100 repetitions)
+  4011ce:	48 8d 7c 24 08       	lea    rdi,[rsp+0x8] load the pointer rsp + 8 into rdi
+  4011d3:	f3 48 ab             	rep stos QWORD PTR es:[rdi],rax stores 0 from rdi to rdi+400
+  4011d6:	5f                   	pop    rdi - Get input
+  ->4011d7:	48 0f b6 07          	movzx  rax,BYTE PTR [rdi] move contents of input to rax.
+  4011db:	84 c0                	test   al,al 
+  4011dd:	74 09                	je     4011e8 <_start+0xdb> exit if contents of al, rax (input) are 0
+  4011df:	48 ff 04 c4          	inc    QWORD PTR [rsp+rax*8] otherwise, increment rsp+rax*8
+  4011e3:	48 ff c7             	inc    rdi  Increment rdi
+  4011e6:	eb ef                	jmp    4011d7 <_start+0xca>
+  -> 4011e8:	48 bf 2c 10 40 00 00 00 00 00 	movabs rdi,0x40102c - sets 1st arg to memory space
+  4011f2:	48 8d b4 24 08 02 00 00 	lea    rsi,[rsp+0x208] - set 2nd arg to 208 places behind the stack
+  4011fa:	ba 1a 00 00 00       	mov    edx,0x1a - sets third arg to 26
+  4011ff:	e8 98 ff ff ff       	call   40119c <_start+0x8f> / Calls Bridge
+  401204:	c9                   	leave  
+  401205:	c3                   	ret  
+
+hash()  
+  401206:	31 c0                	xor    eax,eax F2 - this fn checks whether the last byte is q
+  ->401208:	d0 c8                	ror    al,1
+  40120a:	32 07                	xor    al,BYTE PTR [rdi]
+  40120c:	80 3f 00             	cmp    BYTE PTR [rdi],0x0
+  40120f:	74 05                	je     401216 <_start+0x109>
+  401211:	48 ff c7             	inc    rdi
+  401214:	eb f2                	jmp    401208 <_start+0xfb>
+  ->401216:	3c 71                	cmp    al,0x71
+  401218:	0f 94 c0             	sete   al
+  40121b:	c3                   	ret    
