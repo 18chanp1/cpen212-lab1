@@ -4,38 +4,31 @@ global binsearch
 
 ;1. lo-rdi, 2. hi-rsi, 3.search key - rdx;
 binsearch:
-cmp rsi, rdi
-jb notfound
-
-;Calculate mid;
 push rsi
 pop rax
 sub rax, rdi
+jb notfound
+
+;Calculate mid;
 shr rax, 4
-sal rax, 3
-add rax, rdi
-
-
+lea rax, [rdi + rax * 8]
 
 cmp [rax],  rdx
-jne checkSmall
-ret
+je returning
 
 checkSmall:
 jbe isLarge
-sub eax, 8
-push rax
-pop rsi
-call binsearch
-ret
+lea rsi, [rax-8]
+jmp callBin
 
 isLarge:
-add eax, 8
-push rax
-pop rdi
+lea rdi, [rax+8]
+
+callBin:
 call binsearch
+returning:
 ret
 
 notfound:
-xor rax, rax
+xor eax, eax
 ret
